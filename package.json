@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node room_server.js"
   },
   "keywords": [],
   "author": "komal yadav",
@@ -15,8 +15,8 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "mongoose": "^8.16.1",
     "mysql2": "^3.14.1",
+    "mongoose": "^7.x.x",
     "nodemailer": "^7.0.3",
     "nodemon": "^3.1.10"
   },
