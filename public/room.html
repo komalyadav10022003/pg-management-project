@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room Details</title>
+  <style>
+    body {
+      background-color: #12343b;
+      color: #c89666;
+      font-family: 'Playfair Display', serif;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+    }
+    .summary-card {
+      border: 1px solid #c89666;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #c89666;
+      background-color: #12343b;
+      color: #c89666;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 16px;
+      background-color: #c89666;
+      color: #12343b;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e3ac72;
+    }
+  </style>
+</head>
+<body>
+  <h2>Room Details</h2>
+
+  <div id="summaryView" style="display: none;">
+    <div class="summary-card" id="summaryCard"></div>
+    <button id="editBtn">Edit</button>
+  </div>
+
+  <form id="roomForm" style="display: none;">
+    <label>Guest Name: <input type="text" name="guestName" /></label>
+    <label>Booking Date: <input type="date" name="bookingDate" /></label>
+    <label>Total Charges: <input type="number" name="totalCharges" /></label>
+    <label>Payment Done: <input type="number" name="paymentDone" /></label>
+    <label>Payment Date: <input type="date" name="paymentDate" /></label>
+    <label>Pending Payment: <input type="number" name="pendingPayment" /></label>
+    <label>Electricity Reading at Booking: <input type="number" name="electricityReading" /></label>
+    <label>Documents Submitted: <textarea name="documentsSubmitted"></textarea></label>
+    <label>No. of Guests: <input type="number" name="numGuests" /></label>
+    <label>Gender: <input type="text" name="gender" /></label>
+    <label>Phone Number: <input type="text" name="phone" /></label>
+    <button type="submit">Save</button>
+  </form>
+
+ <script>
+  const params = new URLSearchParams(window.location.search);
+  const pg = params.get("pg");
+  const floor = params.get("floor");
+  const room = params.get("room");
+  const isBooked = params.get("booked") === "true";
+
+  const form = document.getElementById("roomForm");
+  const summaryView = document.getElementById("summaryView");
+  const summaryCard = document.getElementById("summaryCard");
+  const editBtn = document.getElementById("editBtn");
+
+  if (!pg || !floor || !room) {
+    alert("Missing room details.");
+  }
+
+  // Show booked room info
+// NEW - Fetches full room data
+if (isBooked) {
+  fetch(`/api/room-details?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}&room=${encodeURIComponent(room)}`)
+    .then(res => res.json())
+    .then(response => {
+      if (response.success && response.room) {
+        const roomData = response.room;
+
+        // Fill summary
+        const summaryHTML = `
+          <h3>Room ${room}</h3>
+          <p><strong>Guest Name:</strong> ${roomData.guestName || '-'}</p>
+          <p><strong>Booking Date:</strong> ${roomData.bookingDate || '-'}</p>
+          <p><strong>Total Charges:</strong> ₹${roomData.totalCharges || '-'}</p>
+          <p><strong>Payment Done:</strong> ₹${roomData.paymentDone || '-'}</p>
+          <p><strong>Payment Date:</strong> ${roomData.paymentDate || '-'}</p>
+          <p><strong>Pending Payment:</strong> ₹${roomData.pendingPayment || '-'}</p>
+          <p><strong>Electricity Reading:</strong> ${roomData.electricityReading || '-'}</p>
+          <p><strong>Documents Submitted:</strong> ${roomData.documentsSubmitted || '-'}</p>
+          <p><strong>Num Guests:</strong> ${roomData.numGuests || '-'}</p>
+          <p><strong>Gender:</strong> ${roomData.gender || '-'}</p>
+          <p><strong>Phone:</strong> ${roomData.phone || '-'}</p>
+        `;
+        summaryCard.innerHTML = summaryHTML;
+        summaryView.style.display = "block";
+
+        // Also pre-fill form fields for editing
+        Object.keys(roomData).forEach(key => {
+          if (form.elements[key]) {
+            form.elements[key].value = roomData[key];
+          }
+        });
+      } else {
+        alert("Room not found.");
+      }
+    });
+} else {
+  form.style.display = "block"; // If available, show blank form
+}
+
+
+  editBtn.addEventListener("click", () => {
+    summaryView.style.display = "none";
+    form.style.display = "block";
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    fetch("/api/room", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ pg, floor, room, data })
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.success) {
+        alert("Room data saved successfully!");
+        window.location.href = `room_layout.html?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}`;
+      } else {
+        alert("Failed to save room data.");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error saving room data.");
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

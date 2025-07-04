@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select PG</title>
+  <style>
+    body {
+      background-color: #12343b;
+      color: #c89666;
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 40px;
+      position: relative;
+      height: 86vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: #c89666;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 30px;
+    }
+
+    .back-button:hover {
+      color: #ffffff;
+    }
+
+    h1 {
+      font-size: 32px;
+      text-align: center;
+    }
+
+    /* Container for the PG boxes arranged horizontally */
+    .pg-container {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pg-button {
+      background-color: #1e4a52;
+      color: #c89666;
+      padding: 20px 40px;
+      font-size: 18px;
+      border: 2px solid #c89666;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      min-width: 220px;
+    }
+
+    .pg-button:hover {
+       background-color: #c89666;
+      box-shadow: 0 0 10px  #1e4a52;
+      color:  #1e4a52;
+    }
+
+    @media (max-width: 300px) {
+      .pg-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="back-button" onclick="goBack()">← Back</button>
+
+  <h1>Select Your PG</h1>
+
+  <div class="pg-container">
+    <button class="pg-button" onclick="selectPG('PrabhuKripa PG')">PrabhuKripa PG</button>
+    <button class="pg-button" onclick="selectPG('PrabhuKripa Residency')">PrabhuKripa Residency</button>
+  </div>
+
+  <script>
+    function selectPG(pgName) {
+      window.location.href = `select_floor.html?pg=${encodeURIComponent(pgName)}`;
+    }
+
+    function goBack() {
+      window.location.href = 'homepage.html';
+    }
+  </script>
+</body>
+</html>

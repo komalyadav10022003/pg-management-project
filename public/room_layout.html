@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room Layout</title>
+  <style>
+    body {
+      font-family: 'Playfair Display', serif;
+      background-color: #12343b;
+      color: #c89666;
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #c89666;
+      font-size: 32px;
+    }
+
+    .room-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .room-card {
+      background: #1f4e55;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: #c89666;
+      border: 2px solid black; /* default */
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+    }
+
+    .room-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .room-status {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 0px;
+      color: #c89666;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #c89666;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .back-button:hover {
+      background-color: #c89666;
+      color: #12343b;
+    }
+  </style>
+</head>
+<body>
+  <a href="select_floor.html" class="back-button">← Back to Floor Selection</a>
+  <h2>Room Layout</h2>
+
+  <div class="room-container" id="roomContainer"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const pg = params.get("pg");
+    const floor = params.get("floor");
+
+    fetch(`/api/rooms?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then(data => {
+        const container = document.getElementById("roomContainer");
+        container.innerHTML = "";
+
+        data.forEach(room => {
+          const link = document.createElement("a");
+          link.className = "room-card";
+
+          // Set room link URL
+          const isBooked = room.status === "Booked";
+          link.href = `room.html?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}&room=${room.room}&booked=${isBooked}`;
+
+          // Set room content
+          link.innerHTML = `
+            <div class="room-title">Room ${room.room}</div>
+            <div class="room-status">Status: ${room.status}</div>
+            <div class="room-status">Guest: ${room.guestName || "—"}</div>
+            <div class="room-status">Pending Payment: ₹${room.pendingPayment || 0}</div>
+          `;
+
+          // ✅ Apply border color
+          if (room.status === "Available") {
+            link.style.border = "2px solid white";
+          } else if (room.pendingPayment == 0) {
+            link.style.border = "2px solid yellow";
+          } else {
+            link.style.border = "2px solid red";
+          }
+
+          container.appendChild(link);
+        });
+      })
+      .catch(err => {
+        alert("Error loading rooms");
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

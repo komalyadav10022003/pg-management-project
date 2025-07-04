@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Komal  Yadav",
+    "email": "komal.yadav10022003@gmail.com",
+    "password": "$2b$10$PWP9JBToSHVpa/8Gyj7OXevW1Je0BPMVPGFTXphmzqDZ4GAfZDT/y",
+    "gender": "Female"
+  },
+  {
+    "name": "Chintu",
+    "email": "12212124@nitkkr.ac.in",
+    "password": "$2b$10$kA.2aY/t7AxvgnaH.ZeUNOp3dbiNtqCYKgEjkcujLvDazb/HoYufa",
+    "gender": "Male"
+  },
+  {
+    "name": "Himmat Singh",
+    "email": "singh.himmat0567@gmail.com",
+    "password": "$2b$10$gS8gKDOLkCPwJJiiacNKeOZUcht61kFEVfR/srIUwo6E9uSuZrERC",
+    "gender": "Male"
+  },
+  {
+    "name": "Roshan Lal Yadav",
+    "email": "roshanlal.yadav@gmail.com",
+    "password": "$2b$10$KPmICO5o5WtihXanoeon3uNuKHwP5d7gC7hGdtC/8lFCw/0f7kcca",
+    "gender": "Male"
+  }
+]

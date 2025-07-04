@@ -1,0 +1,310 @@
+{
+  "PrabhuKripa PG": {
+    "Ground Floor": {
+      "101": {
+        "guestCount": "1",
+        "guestNames": "asha",
+        "gender": "female",
+        "phoneNumbers": "9416608090",
+        "bookingDate": "2025-06-14",
+        "totalRent": "1000",
+        "electricityReading": "400",
+        "paymentDone": "1000",
+        "paymentDate": "2025-06-14",
+        "pendingPayment": "0",
+        "documentsSubmitted": "Nothing",
+        "address": "Bhakli",
+        "status": "Booked"
+      },
+      "102": {
+        "guestName": "Asha , Himmat",
+        "bookingDate": "2025-06-06",
+        "totalCharges": "2500",
+        "paymentDone": "1000",
+        "paymentDate": "2025-06-06",
+        "pendingPayment": "1500",
+        "electricityReading": "500",
+        "numGuests": "2",
+        "guestPhone": "8930174577",
+        "guestGender": "Female",
+        "documentsSubmitted": "Aadhar Card",
+        "status": "Booked"
+      },
+      "103": {
+        "guestCount": "2",
+        "guestNames": "Asha , Himmat",
+        "gender": "1 male , 1 female",
+        "phoneNumbers": "9416608090",
+        "bookingDate": "2025-06-10",
+        "totalRent": "4000",
+        "electricityReading": "100",
+        "paymentDone": "4000",
+        "paymentDate": "2025-06-12",
+        "pendingPayment": "0",
+        "documentsSubmitted": "Aadhar card",
+        "address": "Karnawas , Rewari",
+        "status": "Booked"
+      },
+      "104": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "105": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "106": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "107": {
+        "guestCount": "2",
+        "guestNames": "Komal Chintu",
+        "gender": "1 male , 1 female",
+        "phoneNumbers": "8930174577",
+        "bookingDate": "2025-06-12",
+        "totalRent": "5000",
+        "electricityReading": "544",
+        "paymentDone": "2000",
+        "paymentDate": "2025-06-12",
+        "pendingPayment": "3000",
+        "documentsSubmitted": "Marksheet",
+        "address": "Rewari",
+        "status": "Booked"
+      },
+      "108": {
+        "guestCount": "1",
+        "guestNames": "Komal",
+        "gender": "female",
+        "phoneNumbers": "8930174577",
+        "bookingDate": "2025-06-14",
+        "totalRent": "5000",
+        "electricityReading": "500",
+        "paymentDone": "4000",
+        "paymentDate": "2025-06-14",
+        "pendingPayment": "1000",
+        "documentsSubmitted": "Marksheet",
+        "address": "Rewari",
+        "status": "Booked"
+      },
+      "109": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "110": {
+        "guestName": "Roshan Lal",
+        "bookingDate": "2025-06-01",
+        "totalCharges": "5000",
+        "paymentDone": "500",
+        "paymentDate": "2025-06-01",
+        "pendingPayment": "4500",
+        "electricityReading": "455",
+        "documentsSubmitted": "Domocile",
+        "numGuests": "1",
+        "gender": "Male",
+        "phone": "9466893893",
+        "status": "Booked"
+      },
+      "111": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "114": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "115": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "116": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "117": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "118": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "119": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "120": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "111A": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "111B": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      }
+    },
+    "First Floor": {
+      "201": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "202": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "203": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "204": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "206": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "207": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "208": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "209": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "210": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "211": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "214": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "215": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "216": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "217": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "218": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "219": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "220": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "211A": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "211B": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      }
+    }
+  },
+  "PrabhuKripa Residency": {
+    "Ground Floor": {
+      "G1": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "G2": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "G3": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "G4": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "G5": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      }
+    },
+    "First Floor": {
+      "F1": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "F2": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      },
+      "F3": {
+        "status": "Available",
+        "guestName": "",
+        "paymentDone": ""
+      }
+    }
+  },
+  "undefined": {
+    "undefined": {}
+  }
+}

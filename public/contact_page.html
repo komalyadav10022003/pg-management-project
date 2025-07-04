@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Prabhukripa PG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Playfair Display', serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #12343b;
+      color: #333;
+    }
+
+    /* === TOP NAVBAR === */
+    .navbar {
+      background-color: #12343b;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-bottom: 2px solid #c89666;
+    }
+
+    .navbar .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #c89666;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      display: inline;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #f5f5f5;
+      color: #c89666;
+    }
+
+    /* === PAGE CONTENT === */
+    .content {
+      padding: 40px 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c89666;
+      margin: 20px 0 40px;
+      font-size: 48px;
+    }
+
+    .owner-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .owner-card {
+      width: 350px;
+      height: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      border-left: 5px solid #c89666;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .owner-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .owner-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 2px solid #c89666;
+    }
+
+    .owner-info h3 {
+      margin: 0 0 10px;
+      color: #a6744e;
+    }
+
+    .owner-info p {
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    .owner-info a {
+      color: #12343b;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .navbar ul li {
+        margin-bottom: 10px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Top Navbar -->
+  <div class="navbar">
+    <div class="logo">Prabhukripa PG</div>
+    <ul>
+      <li><a href="homepage.html">Home</a></li>
+      <li><a href="owner_login_signup.html">Owner</a></li>
+      <li><a href="#">Guest</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact_page.html">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- ✅ Main Content -->
+  <div class="content">
+    <h1>Contact Us</h1>
+    <div class="owner-boxes">
+      
+
+      <div class="owner-card">
+        <img src="baba_photo.jpg" alt =" r 2" class="owner-photo" />
+        <div class="owner-info">
+          <h3>Shri.Roshan Lal Yadav</h3>
+          <p><strong>Phone:</strong> <a href="tel:+919812984577">+91 9466893893</a></p>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <img src="himmatsingh_photo.jpg" alt="Owner 1" class="owner-photo" />
+        <div class="owner-info">
+          <h3>Mr. Himmat Singh</h3>
+          <p><strong>Phone:</strong> <a href="tel:+917015218273">+91 7015218273</a></p>
+          <p><strong>Email:</strong> <a href="mailto:singh.himmat0567@gmail.com">singh.himmat0567@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="owner-card">
+        <img src="ashish_photo.jpg" alt="Owner 2" class="owner-photo" />
+        <div class="owner-info">
+          <h3>Mr. Ashish Rao</h3>
+          <p><strong>Phone:</strong> <a href="tel:+919812984577">+91 9812984577</a></p>
+          <p><strong>Email:</strong> <a href="mailto:ashish.rao@gmail.com">ashish.rao@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="owner-card">
+        <img src="lawrence_photo.jpg" alt="Owner 2" class="owner-photo" />
+        <div class="owner-info">
+          <h3>Lawrence Rao </h3>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

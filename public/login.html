@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Owner Login</title>
+  <style>
+    body {
+      background-color: #12343b;
+      color: #c89666;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: #1e4a52;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #c89666;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0 20px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #0f2a2e;
+      color: #c89666;
+      font-size: 16px;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #c89666;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: #c89666;
+      color: #12343b;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #a6764f;
+    }
+
+    .error-message {
+      color: #ff4c4c;
+      margin-top: 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #c89666;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Owner Login</h2>
+    <form id="loginForm" method="POST">
+      <input type="text" name="username" placeholder="Enter Username" required />
+
+      <div class="password-wrapper">
+        <input type="password" name="password" id="password" placeholder="Enter Password" required />
+        <button type="button" class="toggle-btn" onclick="togglePassword()">👁</button>
+      </div>
+
+      <input type="submit" value="Login" />
+
+      <div style="text-align: right; margin-top: 10px;">
+        <a href="/forgot_password.html" style="color: white; text-decoration: none;">Forgot Password?</a>
+      </div>
+    </form>
+    <a href="homepage.html" class="back-link"> Back to Home</a>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById('password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const email = formData.get("username");
+      const password = formData.get("password");
+
+      try {
+        const res = await fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (res.ok) {
+          window.location.href = '/select_pg.html';
+        } else {
+          const data = await res.json();
+          alert("Login failed: " + data.message);
+        }
+      } catch (err) {
+        alert("Server error during login.");
+      }
+    });
+  </script>
+</body>
+</html>
