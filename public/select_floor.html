@@ -83,6 +83,13 @@
     const urlParams = new URLSearchParams(window.location.search);
     const pg = urlParams.get('pg');
 
+    if (!pg || pg === 'null') {
+      alert("⚠️ PG not selected. Redirecting to PG selection.");
+      window.location.href = "select_pg.html";
+    } else {
+      console.log("✅ PG selected:", pg);
+    }
+
     function goToRoomLayout(floor) {
       const encodedPG = encodeURIComponent(pg);
       const encodedFloor = encodeURIComponent(floor);

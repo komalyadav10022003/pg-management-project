@@ -3,6 +3,7 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 require('dotenv').config();
+console.log("🚨 Loaded MONGO_URI:", process.env.MONGO_URI); 
 const Owner = require('./models/owner');
 const Room = require('./models/room');
 const path = require('path');
@@ -27,6 +28,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB connection
+console.log("🚨 MONGO_URI value:", process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch(err => console.error("❌ MongoDB connection error:", err));

@@ -83,6 +83,13 @@
     const pg = params.get("pg");
     const floor = params.get("floor");
 
+    if (!pg || !floor) {
+      alert("Missing PG or Floor in URL");
+      throw new Error("Missing query parameters");
+    }
+
+    console.log("📦 Fetching rooms for:", pg, floor);
+
     fetch(`/api/rooms?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}`)
       .then(res => {
         if (!res.ok) throw new Error("Network response was not ok");
@@ -92,15 +99,18 @@
         const container = document.getElementById("roomContainer");
         container.innerHTML = "";
 
+        if (!Array.isArray(data) || data.length === 0) {
+          container.innerHTML = `<p>No rooms found for PG: ${pg}, Floor: ${floor}</p>`;
+          return;
+        }
+
         data.forEach(room => {
           const link = document.createElement("a");
           link.className = "room-card";
 
-          // Set room link URL
           const isBooked = room.status === "Booked";
           link.href = `room.html?pg=${encodeURIComponent(pg)}&floor=${encodeURIComponent(floor)}&room=${room.room}&booked=${isBooked}`;
 
-          // Set room content
           link.innerHTML = `
             <div class="room-title">Room ${room.room}</div>
             <div class="room-status">Status: ${room.status}</div>
@@ -108,7 +118,7 @@
             <div class="room-status">Pending Payment: ₹${room.pendingPayment || 0}</div>
           `;
 
-          // ✅ Apply border color
+          // Border color logic
           if (room.status === "Available") {
             link.style.border = "2px solid white";
           } else if (room.pendingPayment == 0) {
@@ -121,8 +131,8 @@
         });
       })
       .catch(err => {
-        alert("Error loading rooms");
-        console.error(err);
+        alert("Error loading rooms. See console for details.");
+        console.error("❌ Error:", err);
       });
   </script>
 </body>
