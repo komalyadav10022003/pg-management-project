@@ -145,7 +145,11 @@ app.get('/api/rooms', async (req, res) => {
   const { pg, floor } = req.query;
 
   try {
-    const rooms = await Room.find({ pg, floor });
+    const rooms = await Room.find({
+  pg: pg.trim(),
+  floor: floor.trim()
+});
+
     const formatted = rooms.map(r => ({
       room: r.room,
       status: r.status,
