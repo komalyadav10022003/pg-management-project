@@ -140,15 +140,15 @@ app.post('/reset-password', async (req, res) => {
   res.json({ success: true, message: 'Password reset successful' });
 });
 
-// ✅ Get rooms for layout
+// ✅ Get rooms for layout with case-insensitive matching
 app.get('/api/rooms', async (req, res) => {
   const { pg, floor } = req.query;
 
   try {
     const rooms = await Room.find({
-  pg: pg.trim(),
-  floor: floor.trim()
-});
+      pg: { $regex: new RegExp(`^${pg.trim()}$`, 'i') },
+      floor: { $regex: new RegExp(`^${floor.trim()}$`, 'i') }
+    });
 
     const formatted = rooms.map(r => ({
       room: r.room,
@@ -157,11 +157,15 @@ app.get('/api/rooms', async (req, res) => {
       paymentDone: r.paymentDone || 0,
       pendingPayment: r.pendingPayment || 0
     }));
+
     res.json(formatted);
   } catch (err) {
+    console.error('❌ Failed to fetch rooms:', err);
     res.status(500).json({ error: 'Failed to fetch rooms' });
   }
 });
+
+
 
 // ✅ Save or update a room
 app.post('/api/room', async (req, res) => {
@@ -203,6 +207,23 @@ app.get('/api/room-details', async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
+
+app.get('/api/debug-rooms', async (req, res) => {
+  try {
+    const rooms = await Room.find({});
+    const trimmedRooms = rooms.map(r => ({
+      pg: r.pg,
+      floor: r.floor,
+      room: r.room,
+      status: r.status
+    }));
+    res.json(trimmedRooms);
+  } catch (err) {
+    console.error("❌ Debug route error:", err);
+    res.status(500).json({ message: "Error fetching rooms for debug" });
+  }
+});
+
 
 // ✅ Start server
 app.listen(PORT, () => {
