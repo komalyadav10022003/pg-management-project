@@ -144,16 +144,17 @@ app.post('/reset-password', async (req, res) => {
 app.get('/api/rooms', async (req, res) => {
   const { pg, floor } = req.query;
 
+  // 🔍 Debug logs
+  console.log("🔍 PG received:", pg);
+  console.log("🔍 Floor received:", floor);
+
   try {
     const rooms = await Room.find({
-  pg: pg.trim(),
-  floor: floor.trim()
-});
+      pg: { $regex: `^${pg.trim()}$`, $options: 'i' },
+      floor: { $regex: `^${floor.trim()}$`, $options: 'i' }
+    });
 
-
-    if (rooms.length === 0) {
-      console.warn(`⚠️ No rooms found for PG: "${pg}", Floor: "${floor}"`);
-    }
+    console.log("🔢 Rooms found:", rooms.length);
 
     const formatted = rooms.map(r => ({
       room: r.room,
@@ -169,7 +170,6 @@ app.get('/api/rooms', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch rooms' });
   }
 });
-
 
 
 
