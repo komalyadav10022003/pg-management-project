@@ -231,6 +231,11 @@ app.get('/api/debug-rooms', async (req, res) => {
 });
 
 
+const seedRooms = require('./seedRooms');
+seedRooms().then(() => console.log('✅ Remote seed done'));
+
+
+
 // ✅ Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
