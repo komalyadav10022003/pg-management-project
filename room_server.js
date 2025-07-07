@@ -140,15 +140,20 @@ app.post('/reset-password', async (req, res) => {
   res.json({ success: true, message: 'Password reset successful' });
 });
 
-// ✅ Get rooms for layout with case-insensitive matching
+// ✅ Get rooms for layout
 app.get('/api/rooms', async (req, res) => {
   const { pg, floor } = req.query;
 
   try {
     const rooms = await Room.find({
-      pg: { $regex: new RegExp(`^${pg.trim()}$`, 'i') },
-      floor: { $regex: new RegExp(`^${floor.trim()}$`, 'i') }
-    });
+  pg: pg.trim(),
+  floor: floor.trim()
+});
+
+
+    if (rooms.length === 0) {
+      console.warn(`⚠️ No rooms found for PG: "${pg}", Floor: "${floor}"`);
+    }
 
     const formatted = rooms.map(r => ({
       room: r.room,
@@ -160,10 +165,11 @@ app.get('/api/rooms', async (req, res) => {
 
     res.json(formatted);
   } catch (err) {
-    console.error('❌ Failed to fetch rooms:', err);
+    console.error("❌ Error in /api/rooms:", err);
     res.status(500).json({ error: 'Failed to fetch rooms' });
   }
 });
+
 
 
 
