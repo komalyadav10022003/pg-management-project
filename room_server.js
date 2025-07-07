@@ -231,8 +231,9 @@ app.get('/api/debug-rooms', async (req, res) => {
 });
 
 
+// 🔁 TEMPORARY: Seed MongoDB on Render (only if empty)
 const seedRooms = require('./seedRooms');
-seedRooms().then(() => console.log('✅ Remote seed done'));
+seedRooms(); // Will run once and skip if already seeded
 
 
 

@@ -19,7 +19,6 @@ const prabhukripaFirst = [
 const residencyGround = ["1", "2", "3", "4", "5"];
 const residencyFirst = ["1", "2", "3"];
 
-// 🛠 Add rooms with correct casing and spacing
 prabhukripaGround.forEach(room => {
   rooms.push({ pg: "PrabhuKripa PG", floor: "Ground Floor", room: room.trim(), status: "Available" });
 });
@@ -33,15 +32,19 @@ residencyFirst.forEach(room => {
   rooms.push({ pg: "PrabhuKripa Residency", floor: "First Floor", room: room.trim(), status: "Available" });
 });
 
-// 🔌 Connect and insert
-mongoose.connect(process.env.MONGO_URI)
-  .then(async () => {
-    await Room.deleteMany({}); // Optional: clear existing data
+// Export seeding function
+module.exports = async function seedRooms() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    const existing = await Room.find({});
+    if (existing.length > 0) {
+      console.log("✅ Rooms already exist. Skipping seeding.");
+      return;
+    }
+
     await Room.insertMany(rooms);
-    console.log('✅ Room data seeded successfully');
-    process.exit();
-  })
-  .catch(err => {
-    console.error('❌ Error seeding room data:', err);
-    process.exit(1);
-  });
+    console.log("✅ Room data seeded on Render.");
+  } catch (err) {
+    console.error("❌ Error seeding room data:", err);
+  }
+};
